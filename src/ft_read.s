@@ -1,5 +1,7 @@
 bits 64
 
+extern __erno_location
+
 section .text
 	global ft_read
 
@@ -13,6 +15,10 @@ section .text
 		ret ; return value in rax 
 	
 	_handle_error:
-
+		neg rax ; positive value of errno code
+		push rax ; save value of rax on the stack
+		call __errno_location wtr ..plt ;errno adress in rax, with respecto to the Procedure Linkage Table
+		pop r12 ; save errno code in r12
+		mov [rax], r12 ; change value of errno (adress is in rax)
 		mov rax, -1
 		ret ; return -1 (error) in rax
