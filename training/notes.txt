@@ -1,3 +1,8 @@
+ the first six arguments are loaded in the registers 
+ RDI, RSI, RDX, RCX, R8, and R9
+
+ Additional arguments are passed on the stack
+ 
  ---------------------------------------------------------------------------------------------
 
  Structure of a nasm program
@@ -34,7 +39,10 @@
  equ <value>							--> equal
 
  xor <register>, <value> / <register>	--> ou exclusif (false si same value)
+ and ....
+ or ....
 
+ 
  cmp <A> <B>	--> compare
  jmp <label>	--> jump to label
 
@@ -72,4 +80,14 @@
  ---------------------------------------------------------------------------------------------
 
 inc <register> --> increment value in register
-dec al
+dec <register> --> decrement ....
+
+neg <register> --> negative: inverse la valeur
+not <register> --> inversion de bits: 0011 -> 1100
+
+ ---------------------------------------------------------------------------------------------
+
+add <A> <B> --> A + B --> resultat stock dans A
+sub <A> <B> --> A - B
+mul <A> --> rax * A --> resultat dans rax
+div <A> --> rax / A --> division euclidienne !! Quotient dans rax, reste dans rdx 
