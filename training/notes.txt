@@ -30,8 +30,8 @@
  dx -> declare type x
  b -> byte			= 1 byte	( 8 bits  )
  w -> word			= 2 bytes	( 16 bits )
- d -> double		= 3 bytes	( 32 bits )
- q -> quadruple	= 4 bytes		( 64 bits )
+ d -> double		= 4 bytes	( 32 bits )
+ q -> quadruple		= 8 bytes	( 64 bits )
 
  ---------------------------------------------------------------------------------------------
 
@@ -91,3 +91,8 @@ add <A> <B> --> A + B --> resultat stock dans A
 sub <A> <B> --> A - B
 mul <A> --> rax * A --> resultat dans rax
 div <A> --> rax / A --> division euclidienne !! Quotient dans rax, reste dans rdx 
+
+ ---------------------------------------------------------------------------------------------
+
+; 	arguments are  in the registers 
+; 	RDI, RSI, RDX, RCX, R8, and R9

@@ -4,8 +4,10 @@ LIB 		= 	libasm.a
 
 SRC_DIR		=	src
 
-FILES 		=	ft_read.s\
-
+FILES 		=	ft_read.s		\
+				ft_write.s		\
+				ft_strlen.s		\
+				ft_strcpy.s		\
 
 SRCS 		= 	$(addprefix $(SRC_DIR)/, $(FILES))
 
@@ -20,13 +22,14 @@ OBJ 		= 	$(SRCS:.s=.o)
 				@printf "Generating object... %s\n" $@
 				@printf "\n"
 				@$(NASM) $(ASMFLAGS) $< -o $@
+				echo "Objects generated."
 
 	
 all 		: 	$(NAME)
 
 $(NAME)		: 	$(OBJ)
 			  	@ar rcs $(LIB) $(OBJ)
-				@echo "Done!"
+				@echo "Lib generated"
 
 # test 		: 	
 # 				make -C ./tester
@@ -36,16 +39,14 @@ clean		:
 		      	@rm -f $(OBJ)
 				@echo "Objects deleted."
 
-fclean		:	
-				clean
+fclean		:	clean
 				@rm -f $(LIB)
-				@echo " deleted."
+				@echo "Lib deleted."
 				@rm -f a.out
 				@rm -f libasm
-				@echo "Lib and executable deleted."
+				@echo "Executable deleted."
 
-re			:	
-				fclean all
+re			:	fclean all
 
 .PHONY		:
 				all test clean fclean re
