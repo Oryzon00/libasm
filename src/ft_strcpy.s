@@ -13,7 +13,7 @@ section .text
 		cmp BYTE [rsi + rcx], 0 ; src[i] != '\0'
 		je loop_end
 		mov al, [rsi + rcx] ; dest[i] = src[i]
-		mov [rdi + rcx], al 
+		mov [rdi + rcx], al ; mov ne prends pas de memoire a memoire
 		inc rcx ; i++
 		jmp loop_start
 	
