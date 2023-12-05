@@ -19,17 +19,16 @@ OBJ 		= 	$(SRCS:.s=.o)
 
 %.o			: 	%.s
 #				a tester le @printf
-				@printf "Generating object... %s\n" $@
-				@printf "\n"
+				@printf "Generating %s\n" $@
 				@$(NASM) $(ASMFLAGS) $< -o $@
-				echo "Objects generated."
+				@printf "Object generated.\n\n"
 
 	
 all 		: 	$(NAME)
 
 $(NAME)		: 	$(OBJ)
 			  	@ar rcs $(LIB) $(OBJ)
-				@echo "Lib generated"
+				@echo "Done"
 
 # test 		: 	
 # 				make -C ./tester
@@ -37,14 +36,11 @@ $(NAME)		: 	$(OBJ)
 clean		:
 # 			 	@rm -f main.o
 		      	@rm -f $(OBJ)
-				@echo "Objects deleted."
+				@printf "Objects deleted.\n\n"
 
 fclean		:	clean
 				@rm -f $(LIB)
-				@echo "Lib deleted."
-				@rm -f a.out
-				@rm -f libasm
-				@echo "Executable deleted."
+				@printf "Lib deleted.\n\n"
 
 re			:	fclean all
 
