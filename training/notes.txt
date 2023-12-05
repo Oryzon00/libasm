@@ -96,3 +96,9 @@ div <A> --> rax / A --> division euclidienne !! Quotient dans rax, reste dans rd
 
 ; 	arguments are  in the registers 
 ; 	RDI, RSI, RDX, RCX, R8, and R9
+
+ ---------------------------------------------------------------------------------------------
+
+Register -> rax
+Memory adress -> [rax]
+constant -> 10
