@@ -17,7 +17,11 @@ section .text
 		mov rdi, rax
 		call malloc wrt ..plt;arg in rdi
 		; --> allocated address in rax
+		cmp rax, 0 ;check if malloc failed
+		je end_function ;jump to return if malloc failed
 		mov rdi, rax ;dest = rdi
 		call ft_strcpy ; args in rdi and rsi
-		; modified str in rax 
-		ret
+		; modified str in rax
+
+		end_function:
+			ret
