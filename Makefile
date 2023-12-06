@@ -18,10 +18,13 @@ NASM 		= 	nasm
 
 ASMFLAGS	=	-f elf64
 
+CC			=	gcc
+
+CFLAGS		= -Wall -Wextra -Werror
+
 OBJ 		= 	$(SRCS:.s=.o)
 
 %.o			: 	%.s
-#				a tester le @printf
 				@printf "Generating %s\n" $@
 				@$(NASM) $(ASMFLAGS) $< -o $@
 				@printf "Object generated.\n\n"
@@ -31,18 +34,21 @@ all 		: 	$(NAME)
 
 $(NAME)		: 	$(OBJ)
 			  	@ar rcs $(LIB) $(OBJ)
-				@echo "Done"
+				@printf "Done\n\n"
 
-# test 		: 	
-# 				make -C ./tester
+test 		: 	all
+				@$(CC) $(CFLAGS) test.c $(LIB)
+				@printf "Tester ready\n\n"
+
 
 clean		:
-# 			 	@rm -f main.o
+# 			 	@rm -f test.o
 		      	@rm -f $(OBJ)
 				@printf "Objects deleted.\n\n"
 
 fclean		:	clean
 				@rm -f $(LIB)
+				@rm -rf a.out
 				@printf "Lib deleted.\n\n"
 
 re			:	fclean all
