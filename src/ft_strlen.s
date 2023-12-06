@@ -1,4 +1,5 @@
 bits 64
+; size_t strlen(const char *s);
 
 section .text
 	global ft_strlen

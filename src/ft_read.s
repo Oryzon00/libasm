@@ -1,9 +1,12 @@
 bits 64
 
+;ssize_t read(int fd, void *buf, size_t count);
+
 extern __errno_location
 
 section .text
 	global ft_read
+
 
 	ft_read:
 ; 	arguments are  in the registers 

@@ -1,5 +1,7 @@
 bits 64
 
+; ssize_t write(int fd, const void *buf, size_t count);
+
 extern __errno_location
 
 section .text
