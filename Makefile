@@ -38,7 +38,7 @@ $(NAME)		: 	$(OBJ)
 
 test 		: 	all
 				@$(CC) $(CFLAGS) test.c $(LIB)
-				@printf "Tester ready\n\n"
+				@printf "Tester ready\n"
 
 
 clean		:
