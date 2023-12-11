@@ -17,7 +17,7 @@ void	test_ft_strlen(void) {
 	printf("--- Test of STRLEN and FT_STRLEN ---\n\n");
 
 	char*	str1 = "Hello world!";
-	char*	str2 = "a";
+	char*	str2 = "z";
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	
 	printf("\033[36mresultat libasm:\t\033[00m");
@@ -42,7 +42,7 @@ void	test_ft_strcpy(void) {
 	printf("--- Test of STRCPY and FT_STRCPY ---\n\n");
 
 	char*	str1 = "Hello world!";
-	char*	str2 = "a";
+	char*	str2 = "z";
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	
 	char*	str_lib_asm = calloc((10000), sizeof(char));
@@ -90,7 +90,7 @@ void	test_ft_strcmp(void) {
 	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%d|\n", ft_strcmp(str1, str2));
 	printf("\033[32mresultat libc:\t\t\033[00m");
-	printf("|%i|\n\n", strcmp(str1, str2));
+	printf("|%d|\n\n", strcmp(str1, str2));
 
 	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%d|\n", ft_strcmp(str1, str3));
