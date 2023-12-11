@@ -22,8 +22,9 @@ section .text
 		loop_start:
 			cmp BYTE [rdi], 0 ;*s1 != '\0'
 			je loop_end
-			mov rbx, [rdi]
-			cmp rbx, [rsi] ;*s1 == *s2
+			cmp BYTE [rsi], 0 ;*s2 != '\0'
+			mov al, BYTE[rdi]
+			cmp al, BYTE[rsi] ;*s1 == *s2
 			jne loop_end
 			inc rdi ;s1++
 			inc rsi ;s2++

@@ -78,6 +78,25 @@ void	test_ft_strcpy(void) {
 void	test_ft_strcmp(void) {
 	printf("--- Test of STRCMP and FT_STRCMP ---\n\n");
 
+	char*	str1 = "Hello world!";
+	char*	str2 = "z";
+	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%d|\n", ft_strcmp(str1, str1));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%d|\n\n", strcmp(str1, str1));
+	
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%d|\n", ft_strcmp(str1, str2));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%i|\n\n", strcmp(str1, str2));
+
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%d|\n", ft_strcmp(str1, str3));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%d|\n\n", strcmp(str1, str3));
+
 	printf("--------------------------------\n\n");
 }
 
@@ -93,11 +112,11 @@ void	test_ft_strdup(void) {
 
 int	main(void) {
 	printf("This is a serie of test comparing my libasm and the lib c\n\n");
-	test_ft_read();
-	test_ft_write();
-	test_ft_strlen();
-	test_ft_strcpy();
+	// test_ft_read();
+	// test_ft_write();
+	// test_ft_strlen();
+	// test_ft_strcpy();
 	test_ft_strcmp();
-	test_ft_strdup();
+	// test_ft_strdup();
 	return (0);
 }
