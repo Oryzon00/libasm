@@ -41,6 +41,37 @@ void	test_ft_strlen(void) {
 void	test_ft_strcpy(void) {
 	printf("--- Test of STRCPY and FT_STRCPY ---\n\n");
 
+	char*	str1 = "Hello world!";
+	char*	str2 = "a";
+	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	
+	char*	str_lib_asm = calloc((10000), sizeof(char));
+	char*	str_lib_c = calloc((10000), sizeof(char));
+
+	ft_strcpy(str_lib_asm, str1);
+	strcpy(str_lib_c, str1);
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+	
+	ft_strcpy(str_lib_asm, str2);
+	strcpy(str_lib_c, str2);
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+
+	ft_strcpy(str_lib_asm, str3);
+	strcpy(str_lib_c, str3);
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+
+	free(str_lib_asm);
+	free(str_lib_c);
+
 	printf("--------------------------------\n\n");
 }
 
