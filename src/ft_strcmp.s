@@ -23,14 +23,17 @@ section .text
 			cmp BYTE [rdi], 0 ;*s1 != '\0'
 			je loop_end
 			cmp BYTE [rsi], 0 ;*s2 != '\0'
-			mov al, BYTE[rdi]
-			cmp al, BYTE[rsi] ;*s1 == *s2
+			je loop_end
+			mov al, BYTE [rdi]
+			cmp al, BYTE [rsi] ;*s1 == *s2
 			jne loop_end
 			inc rdi ;s1++
 			inc rsi ;s2++
 			jmp loop_start
 		
 		loop_end:
-			mov rax, [rdi]
-			sub rax, [rsi] ; *s1 - *s2
+			;mvx -> move with zero extend
+			movzx rax, BYTE [rdi] ;on met le char dans rdi dans rax
+			movzx r8, BYTE [rsi] ; same
+			sub rax, r8 ; *s1 - *s2
 			ret ;return value in rax
