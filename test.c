@@ -103,9 +103,40 @@ void	test_ft_strcmp(void) {
 void	test_ft_strdup(void) {
 	printf("--- Test of STRDUP and FT_STRDUP ---\n\n");
 
-	//test cpy
+	char*	str1 = "Hello world!";
+	char*	str2 = "z";
+	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
-	//test free
+	char*	str_lib_asm = ft_strdup(str1);
+	char*	str_lib_c = strdup(str1);
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+
+	free(str_lib_asm);
+	free(str_lib_c);
+	
+	str_lib_asm = ft_strdup(str2);
+	str_lib_c = strdup(str2);
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+
+	free(str_lib_asm);
+	free(str_lib_c);
+
+	str_lib_asm = ft_strdup(str3);
+	str_lib_c = strdup(str3);
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+
+	free(str_lib_asm);
+	free(str_lib_c);
+
 	printf("--------------------------------\n\n");
 
 }
@@ -116,7 +147,7 @@ int	main(void) {
 	// test_ft_write();
 	// test_ft_strlen();
 	// test_ft_strcpy();
-	test_ft_strcmp();
-	// test_ft_strdup();
+	// test_ft_strcmp();
+	test_ft_strdup();
 	return (0);
 }
