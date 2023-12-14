@@ -49,6 +49,7 @@ clean		:
 fclean		:	clean
 				@rm -f $(LIB)
 				@rm -rf a.out
+				@rm -rf test.txt
 				@printf "Lib deleted.\n\n"
 
 re			:	fclean all
