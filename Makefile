@@ -37,7 +37,7 @@ $(NAME)		: 	$(OBJ)
 				@printf "Done\n\n"
 
 test 		: 	all
-				@$(CC) $(CFLAGS) main.c $(LIB)
+				@$(CC) $(CFLAGS) main.c -L. -lasm
 				@printf "Tester ready\n"
 
 
