@@ -3,6 +3,27 @@
 void	test_ft_read(void) {
 	printf("--- Test of READ and FT_READ ---\n\n");
 
+	char*	fake = calloc(1024, sizeof(char));
+	if (!fake) {
+		exit(1);
+	}
+	char*	real = calloc(1024, sizeof(char));
+	if (!real) {
+		free(fake);
+		exit (1);
+	}
+
+	printf("Real read: \n");
+	read(0, real, 1024);
+	printf("%s\n\n", real);
+
+	printf("fake read: \n");
+	ft_read(0, fake, 1024);
+	printf("%s\n\n", fake);
+
+	free(real);
+	free(fake);
+
 	int file = open("Makefile", O_RDONLY, 0666);
 	if (file < 0) {
 		perror("Unable to open file");
@@ -10,7 +31,14 @@ void	test_ft_read(void) {
 	}
 
 	char*	str_lib_asm = calloc((100), sizeof(char));
+	if (!str_lib_asm) {
+		exit(1);
+	}
 	char*	str_lib_c = calloc((100), sizeof(char));
+	if (!str_lib_c) {
+		free(str_lib_asm);
+		exit (1);
+	}
 
 	size_t read_len = 10;
 	printf("\033[36mresultat libasm:\t\033[00m");
@@ -54,7 +82,6 @@ void	test_ft_read(void) {
 
 	close(file);
 	printf("--------------------------------\n\n");
-
 }
 
 void	test_ft_write(void) {
@@ -63,6 +90,9 @@ void	test_ft_write(void) {
 	char*	str1 = "Hello world!\n";
 	char*	str2 = "z\n";
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n";
+
+	write(1, "Je suis le veritable write\n\n", strlen("Je suis le veritable write\n\n"));
+	ft_write(1, "Je suis le faux write\n\n", strlen("Je suis le faux write\n\n"));
 
 	int file = open("test.txt", O_WRONLY | O_CREAT, 0666);
 	if (file < 0) {
@@ -117,6 +147,11 @@ void	test_ft_strlen(void) {
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	
 	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%zu|\n", ft_strlen(""));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%zu|\n\n", strlen(""));
+
+	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%zu|\n", ft_strlen(str1));
 	printf("\033[32mresultat libc:\t\t\033[00m");
 	printf("|%zu|\n\n", strlen(str1));
@@ -141,8 +176,15 @@ void	test_ft_strcpy(void) {
 	char*	str2 = "z";
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	
-	char*	str_lib_asm = calloc((10000), sizeof(char));
-	char*	str_lib_c = calloc((10000), sizeof(char));
+	char	str_lib_asm[1024];
+	char	str_lib_c[1024];
+
+	ft_strcpy(str_lib_asm, "");
+	strcpy(str_lib_c, "");
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
 
 	ft_strcpy(str_lib_asm, str1);
 	strcpy(str_lib_c, str1);
@@ -165,8 +207,6 @@ void	test_ft_strcpy(void) {
 	printf("\033[32mresultat libc:\t\t\033[00m");
 	printf("|%s|\n\n", str_lib_c);
 
-	free(str_lib_asm);
-	free(str_lib_c);
 
 	printf("--------------------------------\n\n");
 }
@@ -177,6 +217,21 @@ void	test_ft_strcmp(void) {
 	char*	str1 = "Hello world!";
 	char*	str2 = "z";
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%d|\n", ft_strcmp("", ""));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%d|\n\n", strcmp("", ""));
+
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%d|\n", ft_strcmp("", str1));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%d|\n\n", strcmp("", str1));
+
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%d|\n", ft_strcmp(str1, ""));
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%d|\n\n", strcmp(str1, ""));
 
 	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%d|\n", ft_strcmp(str1, str1));
@@ -203,8 +258,32 @@ void	test_ft_strdup(void) {
 	char*	str2 = "z";
 	char*	str3 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
-	char*	str_lib_asm = ft_strdup(str1);
-	char*	str_lib_c = strdup(str1);
+	char*	str_lib_asm = ft_strdup("");
+	if (!str_lib_asm) {
+		exit (1);
+	}
+	char*	str_lib_c = strdup("");
+	if (!str_lib_c) {
+		free(str_lib_asm);
+		exit(1);
+	}
+	printf("\033[36mresultat libasm:\t\033[00m");
+	printf("|%s|\n", str_lib_asm);
+	printf("\033[32mresultat libc:\t\t\033[00m");
+	printf("|%s|\n\n", str_lib_c);
+
+	free(str_lib_asm);
+	free(str_lib_c);
+
+	str_lib_asm = ft_strdup(str1);
+	if (!str_lib_asm) {
+		exit (1);
+	}
+	str_lib_c = strdup(str1);
+	if (!str_lib_c) {
+		free(str_lib_asm);
+		exit(1);
+	}
 	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%s|\n", str_lib_asm);
 	printf("\033[32mresultat libc:\t\t\033[00m");
@@ -214,7 +293,15 @@ void	test_ft_strdup(void) {
 	free(str_lib_c);
 	
 	str_lib_asm = ft_strdup(str2);
+	if (!str_lib_asm) {
+		exit (1);
+	}
 	str_lib_c = strdup(str2);
+	if (!str_lib_c) {
+		free(str_lib_asm);
+		exit(1);
+	}
+
 	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%s|\n", str_lib_asm);
 	printf("\033[32mresultat libc:\t\t\033[00m");
@@ -224,7 +311,15 @@ void	test_ft_strdup(void) {
 	free(str_lib_c);
 
 	str_lib_asm = ft_strdup(str3);
+	if (!str_lib_asm) {
+		exit (1);
+	}
 	str_lib_c = strdup(str3);
+	if (!str_lib_c) {
+		free(str_lib_asm);
+		exit(1);
+	}
+
 	printf("\033[36mresultat libasm:\t\033[00m");
 	printf("|%s|\n", str_lib_asm);
 	printf("\033[32mresultat libc:\t\t\033[00m");
@@ -247,5 +342,6 @@ int	main(void) {
 	test_ft_strcmp();
 	test_ft_strdup();
 
+//(ulimit -v 2750; ./a.out)
 	return (0);
 }
