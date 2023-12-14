@@ -42,7 +42,7 @@ test 		: 	all
 
 
 clean		:
-# 			 	@rm -f test.o
+				@rm -f test.o
 		      	@rm -f $(OBJ)
 				@printf "Objects deleted.\n\n"
 
