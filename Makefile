@@ -37,12 +37,12 @@ $(NAME)		: 	$(OBJ)
 				@printf "Done\n\n"
 
 test 		: 	all
-				@$(CC) $(CFLAGS) test.c $(LIB)
+				@$(CC) $(CFLAGS) main.c $(LIB)
 				@printf "Tester ready\n"
 
 
 clean		:
-				@rm -f test.o
+				@rm -f main.o
 		      	@rm -f $(OBJ)
 				@printf "Objects deleted.\n\n"
 
